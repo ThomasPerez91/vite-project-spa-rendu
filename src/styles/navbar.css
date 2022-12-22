@@ -17,6 +17,7 @@ header {
 }
 
 #navBarLinks {
+    text-transform: capitalize;
     display: flex;
     justify-content: space-between;
     width: 50%;

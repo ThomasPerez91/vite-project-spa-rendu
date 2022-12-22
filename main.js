@@ -1,10 +1,12 @@
-import PageCharacter from './src/pages/PageCharacter';
+import NavBar from './src/components/NavBar.js';
 import TabManager from './src/utils/TabManager';
-import NavBar from "./src/components/NavBar.js";
 
-import './src/styles/style.css';
-import './src/styles/navbar.css';
+import PageCharacter from './src/pages/PageCharacter';
+import PageNotFound from './src/pages/PageNotFound';
+
 import './src/styles/character.css';
+import './src/styles/navbar.css';
+import './src/styles/style.css';
 
 const headerElement = document.querySelector('header');
 headerElement.appendChild(NavBar());
@@ -15,6 +17,10 @@ const tabManager = new TabManager(rootElement, {
     characters: {
         component: PageCharacter,
         params: []
+    },
+    notFound: {
+        component: PageNotFound,
+        params: []
     }
 });
 
@@ -24,6 +30,9 @@ document.querySelectorAll('[data-tabId]').forEach(element => {
     });
 });
 
-tabManager.openTabById('characters');
-
-window.tabManager = tabManager;
+const path = location.pathname.substring(1).split('?')[0];
+if (!path || ['characters'].includes(path)) {
+    tabManager.openTabById(path || 'characters');
+} else {
+    tabManager.openTabById('notFound');
+}
