@@ -1,13 +1,16 @@
-
-const createElement = ({ tagName, ...rest }) => {
+const createElement = ({tagName, ...rest}) => {
     const element = document.createElement(tagName);
+
+    if ('elementId' in rest) {
+        element.id = rest.elementId;
+    }
+
+    if ('type' in rest) {
+        element.type = rest.type;
+    }
 
     if ('classList' in rest) {
         element.classList.add(...rest.classList);
-    }
-
-    if ('text' in rest) {
-        element.textContent = rest.text;
     }
 
     if ('href' in rest) {
@@ -22,8 +25,12 @@ const createElement = ({ tagName, ...rest }) => {
         element.alt = rest.alt;
     }
 
-    if ('title' in rest) {
+    if('title' in rest) {
         element.title = rest.title;
+    }
+
+    if ('text' in rest) {
+        element.textContent = rest.text;
     }
 
     if ('attributes' in rest) {
@@ -48,4 +55,4 @@ export const createBulkElement = (elements) => {
 };
 
 
-export default createElement;
+export default createElement
