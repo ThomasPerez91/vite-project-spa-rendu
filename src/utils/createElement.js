@@ -1,4 +1,4 @@
-const createElement = ({tagName, ...rest}) => {
+const createElement = ({ tagName, ...rest }) => {
     const element = document.createElement(tagName);
 
     if ('elementId' in rest) {
@@ -17,6 +17,10 @@ const createElement = ({tagName, ...rest}) => {
         element.href = rest.href;
     }
 
+    if ('colspan' in rest) {
+        element.colspan = rest.colspan;
+    }
+
     if ('src' in rest) {
         element.src = rest.src;
     }
@@ -25,7 +29,7 @@ const createElement = ({tagName, ...rest}) => {
         element.alt = rest.alt;
     }
 
-    if('title' in rest) {
+    if ('title' in rest) {
         element.title = rest.title;
     }
 

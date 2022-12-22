@@ -43,6 +43,22 @@ class LocationApi extends BaseApi {
 
     getAll = async () => await this.request('/location');
 
+    getBulk = async (residents = []) => {
+        if (residents.length === 0 || !"length" in residents) {
+            throw new Error('Missing residents');
+        }
+        const residentsIds = residents.map(resident => resident.split('/').pop());
+        const request = await this.request(`/character/${residentsIds.join(',')}`)
+
+        if (residentsIds.length > 1) {
+            return request;
+        }
+
+        return residentsIds.length === 1
+            ? [request]
+            : request;
+    }
+
     getById = async (id = null) => {
         if (!id) {
             throw new Error('Missing location id');
@@ -63,5 +79,6 @@ class EpisodeApi extends BaseApi {
         }
     }
 }
+
 
 export { CharacterApi, LocationApi, EpisodeApi };

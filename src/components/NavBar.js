@@ -15,13 +15,16 @@ const NavBar = ({ text = '', tagName = 'li' } = {}) => createElement(
                             {
                                 tagName: 'li',
                                 classList: ['nav-item'],
+                                attributes: {
+                                    dataTabId: 'characters',
+                                },
                                 children: [
                                     {
                                         tagName: 'a',
                                         text: 'Characters',
                                         classList: ['nav-link'],
                                         attributes: {
-                                            href: '/characters',
+                                            href: '#',
                                         }
                                     }
                                 ]
@@ -29,13 +32,16 @@ const NavBar = ({ text = '', tagName = 'li' } = {}) => createElement(
                             {
                                 tagName: 'li',
                                 classList: ['nav-item'],
+                                attributes: {
+                                    dataTabId: 'locations',
+                                },
                                 children: [
                                     {
                                         tagName: 'a',
                                         text: 'Locations',
                                         classList: ['nav-link'],
                                         attributes: {
-                                            href: '/locations',
+                                            href: '#',
                                         }
                                     }
                                 ]
@@ -43,13 +49,16 @@ const NavBar = ({ text = '', tagName = 'li' } = {}) => createElement(
                             {
                                 tagName: 'li',
                                 classList: ['nav-item'],
+                                attributes: {
+                                    dataTabId: 'episodes',
+                                },
                                 children: [
                                     {
                                         tagName: 'a',
                                         text: 'Episodes',
                                         classList: ['nav-link'],
                                         attributes: {
-                                            href: '/episodes',
+                                            href: '#',
                                         }
                                     }
                                 ]
