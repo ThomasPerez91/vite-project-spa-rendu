@@ -1,6 +1,6 @@
 import createElement from "../utils/createElement";
 
-export function Character({ name, gender, image, origin, species, status, type, url }) {
+export function Character({ id, name, gender, image, origin, species, status, type, url }) {
     const container = createElement({
         tagName: 'div',
         classList: ['character'],
@@ -33,6 +33,8 @@ export function Character({ name, gender, image, origin, species, status, type, 
             }]
         }]
     });
+
+    // todo: open page with "id" on click
 
     return container;
 }

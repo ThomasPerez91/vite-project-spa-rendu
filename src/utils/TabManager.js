@@ -4,10 +4,9 @@ class TabManager {
         this.componentMapping = componentMapping;
     }
 
-    async openTabById(id) {
-        if (id in this.componentMapping) {
-            console.log(this.componentMapping[id])
-            const { component, params: [...props] } = this.componentMapping[id];
+    async openTabById(tabId) {
+        if (tabId in this.componentMapping) {
+            const { component, params: [...props] } = this.componentMapping[tabId];
             const Component = await component(...props);
             this.rootElement.innerHTML = '';
             this.rootElement.appendChild(Component);

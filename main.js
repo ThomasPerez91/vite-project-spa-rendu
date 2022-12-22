@@ -1,6 +1,8 @@
 import PageCharacter from './src/pages/PageCharacter';
 import TabManager from './src/utils/TabManager';
 
+import './src/styles/style.css';
+
 const rootElement = document.querySelector('#app');
 
 const tabManager = new TabManager(rootElement, {
@@ -17,3 +19,5 @@ document.querySelectorAll('[data-tabId]').forEach(element => {
 });
 
 tabManager.openTabById('characters');
+
+window.tabManager = tabManager;
