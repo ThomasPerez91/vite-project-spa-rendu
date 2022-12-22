@@ -1,7 +1,26 @@
 import createElement from '../utils/createElement';
 
-const NavBar = () =>
-    createElement({
+const NavBar = () => {
+    const links = ['characters', 'locations', 'episodes'];
+    const linkElements = links.map((link) => ({
+        tagName: 'li',
+        classList: ['nav-item'],
+        attributes: {
+            'data-tabId': link,
+        },
+        children: [
+            {
+                tagName: 'a',
+                text: link,
+                classList: ['nav-link'],
+                attributes: {
+                    href: `/${link}`,
+                },
+            },
+        ],
+    }));
+
+    return createElement({
         tagName: 'nav',
         id: 'navBar',
         children: [
@@ -11,50 +30,7 @@ const NavBar = () =>
                 children: [
                     {
                         tagName: 'ul',
-                        children: [
-                            {
-                                tagName: 'li',
-                                classList: ['nav-item'],
-                                children: [
-                                    {
-                                        tagName: 'a',
-                                        text: 'Characters',
-                                        classList: ['nav-link'],
-                                        attributes: {
-                                            href: '/characters',
-                                        },
-                                    },
-                                ],
-                            },
-                            {
-                                tagName: 'li',
-                                classList: ['nav-item'],
-                                children: [
-                                    {
-                                        tagName: 'a',
-                                        text: 'Locations',
-                                        classList: ['nav-link'],
-                                        attributes: {
-                                            href: '/locations',
-                                        },
-                                    },
-                                ],
-                            },
-                            {
-                                tagName: 'li',
-                                classList: ['nav-item'],
-                                children: [
-                                    {
-                                        tagName: 'a',
-                                        text: 'Episodes',
-                                        classList: ['nav-link'],
-                                        attributes: {
-                                            href: '/episodes',
-                                        },
-                                    },
-                                ],
-                            },
-                        ],
+                        children: linkElements,
                     },
                 ],
             },
@@ -80,5 +56,6 @@ const NavBar = () =>
             },
         ],
     });
+};
 
 export default NavBar;
