@@ -1,0 +1,30 @@
+.character-page {
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    justify-content: space-around;
+    flex-direction: row;
+    /* overflow: hidden; */
+}
+
+.character {
+    cursor: pointer;
+    background: #e8e8e8;
+    padding: 1.75em;
+    border-radius: 8px;
+    box-shadow:  5px 5px 10px #dfdfdf,
+                 -5px -5px 10px #f1f1f1;
+    transition: .15s;
+}
+
+.character:hover {
+    background: #e8e8e8;
+    box-shadow:  25px 25px 50px #c3c3c3,
+                 -25px -25px 50px #ffffff;
+}
+
+.character img {
+    border-radius: 8px;
+    margin-bottom: 10px;
+}

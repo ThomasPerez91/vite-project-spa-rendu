@@ -1,0 +1,42 @@
+header {
+    z-index: 9;
+    width: 100%;
+    background: url(../../assets/img/rickmorty.png) no-repeat center ;
+    background-size: cover;
+    border-radius: 8px;
+}
+
+#navBar {
+    width: 100%;
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, .35);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 8px;
+}
+
+#navBarLinks {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+#navBarLinks > ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    font-weight: bold;
+}
+
+.nav-link {
+    padding: 0 1rem;
+    text-decoration: none;
+    color: black;
+}
+
+#navBarSearch {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
