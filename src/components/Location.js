@@ -1,30 +1,50 @@
+import { LocationApi } from "../utils/Api.js";
 import createElement from "../utils/createElement";
-import {LocationApi} from "../utils/Api.js";
 
-export async function Location({id, name, type, dimension, residents, url}) {
-
+export async function Location({ name, type, dimension, residents }) {
     const residentsData = (residents.length !== 0) ? await new LocationApi().getBulk(residents) : [];
-    const mappedResident = residentsData.map(({ name, status, url}) => {
-        const nameColumn = {
-            tagName: 'td',
-            classList: 'td',
-            text: name,
-        }
 
-        const statusColumn = {
-            tagName: 'td',
-            classList: 'td',
-            text: status,
-        }
+    const tableTitle = {
+        tagName: 'tr',
+        classList: ['table-location-header-row'],
+        children: [
+            {
+                tagName: 'th',
+                classList: ['table-location-name'],
+                children: [
+                    {
+                        tagName: 'div',
+                        classList: ['table-location-name-text'],
+                        colspan: 3,
+                        text: `${name} (Type: ${type}) (Dimension: ${dimension}) (${residentsData.length} resident(s))`
+                    }
+                ]
+            }
+        ]
+    };
 
-        const urlColumn = {
-            tagName: 'td',
-            classList: 'td',
-            text: url,
-        }
+    const tableColumnsName = {
+        tagName: 'tr',
+        classList: ['table-header-row'],
+        children: [
+            {
+                tagName: 'th',
+                classList: ['table-header'],
+                text: 'Resident Name'
+            },
+            {
+                tagName: 'th',
+                classList: ['table-header'],
+                text: 'Status'
+            },
+            {
+                tagName: 'th',
+                classList: ['table-header'],
+                text: 'Profile'
+            }
+        ]
+    };
 
-        return [nameColumn, statusColumn, urlColumn];
-    });
     const container = createElement({
         tagName: 'table',
         classList: ['location-table'],
@@ -32,58 +52,45 @@ export async function Location({id, name, type, dimension, residents, url}) {
             {
                 tagName: 'thead',
                 children: [
-                    {
-                        tagName: 'tr',
-                        classList: ['table-location-header-row'],
-                        children: [
-                            {
-                                tagName: 'th',
-                                classList: ['table-location-name'],
-                                children: [
-                                    {
-                                        tagName: 'div',
-                                        classList: ['table-location-name-text'],
-                                        text: `${name} (Type: ${type}) (Dimension: ${dimension})`
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                    tagName: 'tr',
-                    classList: ['table-header-row'],
-                    children: [
-                        {
-                            tagName: 'th',
-                            classList: ['table-header'],
-                            text: 'Resident Name'
-                        },
-                        {
-                            tagName: 'th',
-                            classList: ['table-header'],
-                            text: 'Status'
-                        },
-                        {
-                            tagName: 'th',
-                            classList: ['table-header'],
-                            text: 'Profile'
-                        }
-                    ]
-                }
+                    tableTitle,
+                    tableColumnsName
                 ]
             },
             {
                 tagName: 'tbody',
-                children: [
-                    {
+                children: residentsData.length > 0
+                    ? residentsData.map(createTableRowLocation)
+                    : [{
                         tagName: 'tr',
-                        classList: ['table-body-row'],
-                        children: (mappedResident.length !== 0) ? mappedResident : 'No residents'
-                    }
-                ]
+                        children: [{
+                            tagName: 'td',
+                            colspan: "3",
+                            text: 'No resident',
+                        }]
+                    }]
             }
         ]
     });
 
     return container;
 }
+
+const createTableRowLocation = ({ name, status, url }) => ({
+    tagName: 'tr',
+    children: [
+        {
+            tagName: 'td',
+            classList: 'td',
+            text: name,
+        }, {
+            tagName: 'td',
+            classList: 'td',
+            text: status,
+        }, {
+            tagName: 'a',
+            classList: 'td',
+            href: url,
+            text: url,
+        }
+    ]
+});

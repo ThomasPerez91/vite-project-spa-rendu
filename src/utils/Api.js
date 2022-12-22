@@ -48,7 +48,15 @@ class LocationApi extends BaseApi {
             throw new Error('Missing residents');
         }
         const residentsIds = residents.map(resident => resident.split('/').pop());
-        return await this.request(`/character/${residentsIds.join(',')}`);
+        const request = await this.request(`/character/${residentsIds.join(',')}`)
+
+        if (residentsIds.length > 1) {
+            return request;
+        }
+
+        return residentsIds.length === 1
+            ? [request]
+            : request;
     }
 
     getById = async (id = null) => {
