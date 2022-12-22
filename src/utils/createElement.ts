@@ -71,14 +71,6 @@ const createElement = (props: createElementProps): HTMLElement => {
     return element;
 };
 
-export const createBulkElement = (elements) => {
-    const result = [];
-
-    for (const element of elements) {
-        result.push(createElement(element));
-    }
-
-    return result;
-};
+export const createBulkElement = (elements) => elements.map((element) => createElement(element));
 
 export default createElement;
