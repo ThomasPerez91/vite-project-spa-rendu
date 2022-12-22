@@ -1,17 +1,19 @@
-body {
-    margin: 0;
-    padding: 0;
-}
-
 header {
+    z-index: 9;
+    width: 100%;
     background: url(../../assets/img/rickmorty.png) no-repeat center ;
     background-size: cover;
+    border-radius: 8px;
 }
 
 #navBar {
+    width: 100%;
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, .35);
+    padding: 2rem;
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    border-radius: 8px;
 }
 
 #navBarLinks {
@@ -24,9 +26,7 @@ header {
     display: flex;
     justify-content: space-around;
     list-style: none;
-    font-size: 1.5rem;
     font-weight: bold;
-    padding: 1rem;
 }
 
 .nav-link {
@@ -38,6 +38,5 @@ header {
 #navBarSearch {
     display: flex;
     justify-content: flex-start;
-    margin-right: 2rem;
     align-items: center;
 }

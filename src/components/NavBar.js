@@ -1,6 +1,6 @@
 import createElement from "../utils/createElement";
 
-const NavBar = ({text = '', tagName = 'li'} = {}) => createElement(
+const NavBar = ({ text = '', tagName = 'li' } = {}) => createElement(
     {
         tagName: 'nav',
         elementId: 'navBar',

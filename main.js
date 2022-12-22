@@ -3,6 +3,8 @@ import TabManager from './src/utils/TabManager';
 import NavBar from "./src/components/NavBar.js";
 
 import './src/styles/style.css';
+import './src/styles/navbar.css';
+import './src/styles/character.css';
 
 const headerElement = document.querySelector('header');
 headerElement.appendChild(NavBar());

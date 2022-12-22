@@ -25,6 +25,11 @@ html, body {
     flex-direction: column;
 }
 
+html body {
+    width: 1280px;
+    padding: 1em;
+}
+
 a {
     cursor: pointer;
     color: var(--main-color);
@@ -37,45 +42,14 @@ a:hover {
 
 #app {
     height: 100%;
-    width: 1280px;
-    padding: 1em;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-.character-page {
-    padding: 1em;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    justify-content: center;
-    flex-direction: row;
-}
-
-.character {
-    cursor: pointer;
-    padding: 1.75em;
-    background: #e8e8e8;
-    box-shadow:  5px 5px 10px #dfdfdf,
-                 -5px -5px 10px #f1f1f1;
-    transition: .15s;
-}
-
-.character:hover {
-    background: #e8e8e8;
-    box-shadow:  25px 25px 50px #c3c3c3,
-                 -25px -25px 50px #ffffff;
-}
-
-.character img {
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-
 @media (max-width: 1280px) {
-    #app {
+    html body {
         width: 100%;
     }
 }
