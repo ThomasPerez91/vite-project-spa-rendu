@@ -1,13 +1,13 @@
-import createElement from "../utils/createElement";
+import createElement from '../utils/createElement';
 
-const NavBar = ({ text = '', tagName = 'li' } = {}) => createElement(
-    {
+const NavBar = () =>
+    createElement({
         tagName: 'nav',
-        elementId: 'navBar',
+        id: 'navBar',
         children: [
             {
                 tagName: 'article',
-                elementId: 'navBarLinks',
+                id: 'navBarLinks',
                 children: [
                     {
                         tagName: 'ul',
@@ -22,9 +22,9 @@ const NavBar = ({ text = '', tagName = 'li' } = {}) => createElement(
                                         classList: ['nav-link'],
                                         attributes: {
                                             href: '/characters',
-                                        }
-                                    }
-                                ]
+                                        },
+                                    },
+                                ],
                             },
                             {
                                 tagName: 'li',
@@ -36,9 +36,9 @@ const NavBar = ({ text = '', tagName = 'li' } = {}) => createElement(
                                         classList: ['nav-link'],
                                         attributes: {
                                             href: '/locations',
-                                        }
-                                    }
-                                ]
+                                        },
+                                    },
+                                ],
                             },
                             {
                                 tagName: 'li',
@@ -50,36 +50,35 @@ const NavBar = ({ text = '', tagName = 'li' } = {}) => createElement(
                                         classList: ['nav-link'],
                                         attributes: {
                                             href: '/episodes',
-                                        }
-                                    }
-                                ]
+                                        },
+                                    },
+                                ],
                             },
-                        ]
+                        ],
                     },
-                ]
+                ],
             },
             {
                 tagName: 'article',
-                elementId: 'navBarSearch',
+                id: 'navBarSearch',
                 children: [
                     {
                         tagName: 'input',
                         type: 'search',
-                        elementId: 'searchInput',
+                        id: 'searchInput',
                         attributes: {
                             placeholder: 'Search for...',
-                        }
+                        },
                     },
                     {
                         tagName: 'button',
                         type: 'button',
-                        elementId: 'searchButton',
+                        id: 'searchButton',
                         text: 'Search',
-                    }
-                ]
-            }
+                    },
+                ],
+            },
         ],
-    }
-)
+    });
 
-export default NavBar
+export default NavBar;
