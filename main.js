@@ -1,4 +1,5 @@
 import PageCharacter from './src/pages/PageCharacter';
+import PageLocation from './src/pages/PageLocation';
 import TabManager from './src/utils/TabManager';
 import NavBar from "./src/components/NavBar.js";
 
@@ -15,15 +16,16 @@ const tabManager = new TabManager(rootElement, {
     characters: {
         component: PageCharacter,
         params: []
+    },
+    locations: {
+        component: PageLocation,
+        params: []
     }
 });
 
-document.querySelectorAll('[data-tabId]').forEach(element => {
+document.querySelectorAll('[datatabid]').forEach(element => {
     element.addEventListener('click', () => {
-        tabManager.openTabById(element.getAttribute('data-tabId'));
+        tabManager.openTabById(element.getAttribute('datatabid'));
     });
 });
 
-tabManager.openTabById('characters');
-
-window.tabManager = tabManager;
