@@ -1,35 +1,51 @@
 
 const createElement = ({ tagName, ...rest }) => {
-  const element = document.createElement(tagName);
+    const element = document.createElement(tagName);
 
-  if ('classList' in rest) {
-    element.classList.add(...rest.classList);
-  }
-
-  if ('text' in rest) {
-    element.textContent = rest.text;
-  }
-
-  if ('attributes' in rest) {
-    for (let [key, value] of Object.entries(rest.attributes)) {
-      element.setAttribute(key, value);
+    if ('classList' in rest) {
+        element.classList.add(...rest.classList);
     }
-  }
 
-  if ('children' in rest) {
-    for (let e of createBulkElement(rest.children)) element.appendChild(e);
-  }
+    if ('text' in rest) {
+        element.textContent = rest.text;
+    }
 
-  return element;
+    if ('href' in rest) {
+        element.href = rest.href;
+    }
+
+    if ('src' in rest) {
+        element.src = rest.src;
+    }
+
+    if ('alt' in rest) {
+        element.alt = rest.alt;
+    }
+
+    if ('title' in rest) {
+        element.title = rest.title;
+    }
+
+    if ('attributes' in rest) {
+        for (let [key, value] of Object.entries(rest.attributes)) {
+            element.setAttribute(key, value);
+        }
+    }
+
+    if ('children' in rest) {
+        for (let e of createBulkElement(rest.children)) element.appendChild(e);
+    }
+
+    return element;
 };
 
 export const createBulkElement = (elements) => {
-  const result = [];
-  for (let element of elements) {
-    result.push(createElement(element));
-  }
-  return result;
+    const result = [];
+    for (let element of elements) {
+        result.push(createElement(element));
+    }
+    return result;
 };
 
 
-export default createElement
+export default createElement;
