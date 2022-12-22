@@ -10,6 +10,10 @@ const createElement = ({ tagName, ...rest }) => {
         element.textContent = rest.text;
     }
 
+    if ('href' in rest) {
+        element.href = rest.href;
+    }
+
     if ('src' in rest) {
         element.src = rest.src;
     }

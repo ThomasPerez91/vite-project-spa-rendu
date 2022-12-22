@@ -24,8 +24,9 @@ export function Character({ name, gender, image, origin, species, status, type, 
                 tagName: 'p',
                 text: 'Gender ' + gender
             }, {
-                tagName: 'p',
-                text: 'Origin ' + origin
+                tagName: 'a',
+                href: origin.url,
+                text: 'Origin ' + origin.name
             }, {
                 tagName: 'p',
                 text: 'Species ' + species

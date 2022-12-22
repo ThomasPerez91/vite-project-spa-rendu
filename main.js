@@ -1,11 +1,11 @@
-import ListCharacters from './src/pages/ListCharacters';
+import PageCharacter from './src/pages/PageCharacter';
 import TabManager from './src/utils/TabManager';
 
 const rootElement = document.querySelector('#app');
 
 const tabManager = new TabManager(rootElement, {
     characters: {
-        component: ListCharacters,
+        component: PageCharacter,
         params: []
     }
 });
