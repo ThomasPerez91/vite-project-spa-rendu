@@ -60,4 +60,15 @@ header {
 #navBarSearch button {
     cursor: pointer;
     border-radius: 0 8px 8px 0;
+    background-color: #a3a17f;
+}
+
+#navBarSearch button:hover {
+    cursor: pointer;
+    background-color: #b4b04a;
+}
+                                                     /* CSS */
+#navBarSearch button:active {
+    background-color: #2a963d;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
