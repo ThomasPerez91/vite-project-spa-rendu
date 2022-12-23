@@ -1,21 +1,22 @@
 const API_URL_BASE = 'https://rickandmortyapi.com/api';
 
 class BaseApi {
-    #baseUrl = '';
-    constructor(baseUrl = null) {
+    private baseUrl: string;
+
+    constructor(baseUrl: string = null) {
         if (!baseUrl) {
             throw new Error('Missing base URL to fetch');
         }
 
-        this.#baseUrl = baseUrl;
+        this.baseUrl = baseUrl;
     }
 
-    async request(pathname = null) {
+    async request(pathname: string = null) {
         if (!pathname) {
             throw new Error('Pathname is missing');
         }
 
-        const request = await fetch(this.#baseUrl + pathname, { method: 'GET' });
+        const request = await fetch(this.baseUrl + pathname, { method: 'GET' });
         const data = await request.json();
 
         return data;
@@ -33,7 +34,9 @@ class CharacterApi extends BaseApi {
         if (!id) {
             throw new Error('Missing character id');
         }
-    }
+
+        // todo: fetch by id
+    };
 }
 
 class LocationApi extends BaseApi {
@@ -44,26 +47,26 @@ class LocationApi extends BaseApi {
     getAll = async () => await this.request('/location');
 
     getBulk = async (residents = []) => {
-        if (residents.length === 0 || !"length" in residents) {
+        if (residents.length === 0 || !('length' in residents)) {
             throw new Error('Missing residents');
         }
-        const residentsIds = residents.map(resident => resident.split('/').pop());
-        const request = await this.request(`/character/${residentsIds.join(',')}`)
+        const residentsIds = residents.map((resident) => resident.split('/').pop());
+        const request = await this.request(`/character/${residentsIds.join(',')}`);
 
         if (residentsIds.length > 1) {
             return request;
         }
 
-        return residentsIds.length === 1
-            ? [request]
-            : request;
-    }
+        return residentsIds.length === 1 ? [request] : request;
+    };
 
     getById = async (id = null) => {
         if (!id) {
             throw new Error('Missing location id');
         }
-    }
+
+        // todo: fetch by id
+    };
 }
 
 class EpisodeApi extends BaseApi {
@@ -77,8 +80,7 @@ class EpisodeApi extends BaseApi {
         if (!id) {
             throw new Error('Missing episode id');
         }
-    }
+    };
 }
-
 
 export { CharacterApi, LocationApi, EpisodeApi };
