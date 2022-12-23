@@ -1,7 +1,7 @@
 import createElement from '../../utils/createElement';
 import { Location } from './Location.js';
 
-export default function ListLocations(locations: Location[]) {
+export default function ListLocations(locations: LocationType[]) {
     const template = createElement({
         tagName: 'div',
         attributes: {

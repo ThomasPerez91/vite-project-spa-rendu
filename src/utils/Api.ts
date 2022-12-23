@@ -3,7 +3,7 @@ const API_URL_BASE = 'https://rickandmortyapi.com/api';
 class BaseApi {
     private baseUrl: string;
 
-    constructor(baseUrl: string = null) {
+    constructor(baseUrl: string) {
         if (!baseUrl) {
             throw new Error('Missing base URL to fetch');
         }
@@ -11,7 +11,7 @@ class BaseApi {
         this.baseUrl = baseUrl;
     }
 
-    async request(pathname: string = null) {
+    async request(pathname: string) {
         if (!pathname) {
             throw new Error('Pathname is missing');
         }
@@ -46,7 +46,7 @@ class LocationApi extends BaseApi {
 
     getAll = async () => await this.request('/location');
 
-    getBulk = async (residents = []) => {
+    getBulk = async (residents: string[] = []) => {
         if (residents.length === 0 || !('length' in residents)) {
             throw new Error('Missing residents');
         }
