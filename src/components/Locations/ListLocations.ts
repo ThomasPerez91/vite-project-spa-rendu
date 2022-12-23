@@ -1,5 +1,5 @@
 import createElement from '../../utils/createElement';
-import { Location } from './Location.js';
+import { ItemLocation } from './ItemLocation.js';
 
 export default function ListLocations(locations: LocationType[]) {
     const template = createElement({
@@ -8,7 +8,7 @@ export default function ListLocations(locations: LocationType[]) {
             classList: ['location-page'],
         },
     });
-    locations.forEach(async (location) => template.append(await Location(location)));
+    locations.forEach(async (location) => template.append(await ItemLocation(location)));
 
     return template;
 }
