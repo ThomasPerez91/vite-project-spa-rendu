@@ -10,7 +10,13 @@ const NavBar = () => {
                 'data-tabId': link,
                 classList: ['nav-item'],
             },
-            children: [Link({ textContent: link, path: link, classList: ['nav-link'] })],
+            children: [
+                Link({
+                    textContent: link,
+                    href: link,
+                    classList: ['nav-link'],
+                }),
+            ],
         })
     );
 

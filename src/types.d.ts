@@ -36,3 +36,10 @@ interface Episode {
     characters: string[]; // urls api
     url: string;
 }
+
+interface ApiResponseInfo {
+    count: number;
+    pages: number;
+    next?: string;
+    prev?: string;
+}

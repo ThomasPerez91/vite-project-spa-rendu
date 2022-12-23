@@ -1,7 +1,7 @@
 export interface createElementProps {
     tagName: keyof HTMLElementTagNameMap;
     children?: (HTMLElement | createElementProps)[];
-    attributes?: Record<string, string | string[]>;
+    attributes?: Record<string, string | string[] | boolean>;
 }
 
 const createElement = ({

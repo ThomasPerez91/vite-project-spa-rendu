@@ -2,7 +2,7 @@ import createElement from '../../utils/createElement';
 
 const ItemCharacter = ({ name, gender, image, origin, species, status, type }: Character) =>
     createElement({
-        tagName: 'div',
+        tagName: 'li',
         attributes: {
             classList: ['character'],
         },
