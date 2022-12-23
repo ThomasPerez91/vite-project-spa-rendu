@@ -24,7 +24,7 @@ interface LocationType {
     type: string;
     dimension: string;
     residents: string[]; // urls api
-    url: string[];
+    url: string;
     created: string;
 }
 

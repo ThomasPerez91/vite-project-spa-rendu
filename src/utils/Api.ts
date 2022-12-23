@@ -21,78 +21,27 @@ class BaseApi {
     }
 }
 
-interface CharacterApiGetAllResponse {
+interface CharacterApiPaginatedResponse {
     info: ApiResponseInfo;
     results: Character[];
-}
-interface LocationApiGetAllResponse {
-    info: ApiResponseInfo;
-    results: LocationType[];
 }
 class CharacterApi extends BaseApi {
     constructor() {
         super(API_URL_BASE);
     }
 
-    getAll = async (pageId: string = '1'): Promise<CharacterApiGetAllResponse> =>
+    getAll = async (pageId: string = '1'): Promise<CharacterApiPaginatedResponse> =>
         await this.request('/character?page=' + pageId);
 
-    getById = async (id = null) => {
-        if (!id) {
-            throw new Error('Missing character id');
-        }
-
-        return await this.request(`/character/${id}`);
-    };
-}
-
-class LocationApi extends BaseApi {
-    constructor() {
-        super(API_URL_BASE);
-    }
-
-    getAll = async (pageId: string = '1'): Promise<LocationApiGetAllResponse> =>
-        await this.request('/location?page=' + pageId);
-
-    getBulk = async (residents: string[] = []) => {
-        if (residents.length === 0 || !('length' in residents)) {
-            throw new Error('Missing residents');
-        }
-        const residentsIds = residents.map((resident) => {
-            const { pathname } = new URL(resident);
-            const residentId = pathname.substring(1).split('/').pop();
-            return residentId;
-        });
-        const request = await this.request(`/character/${residentsIds.join(',')}`);
-
-        if (residentsIds.length > 1) {
-            return request;
-        }
-
-        return residentsIds.length === 1 ? [request] : request;
-    };
-
-    getById = async (id = null) => {
-        if (!id) {
-            throw new Error('Missing location id');
-        }
-
-        // todo: fetch by id
-    };
-}
-
-class EpisodeApi extends BaseApi {
-    constructor() {
-        super(API_URL_BASE);
-    }
-
-    getAll = async () => await this.request('/episode');
-
-    getBulk = async (characters: string[] = []) => {
+    getBulk = async (characters: string[] = []): Promise<Character[]> => {
         if (characters.length === 0 || !('length' in characters)) {
             throw new Error('Missing characters');
         }
-        const charactersIds = characters.map((character) => character.split('/').pop());
+        const charactersIds = characters.map((character) => {
+            const { pathname } = new URL(character);
+            const characterId = pathname.substring(1).split('/').pop();
+            return characterId;
+        });
         const request = await this.request(`/character/${charactersIds.join(',')}`);
 
         if (charactersIds.length > 1) {
@@ -102,10 +51,77 @@ class EpisodeApi extends BaseApi {
         return charactersIds.length === 1 ? [request] : request;
     };
 
-    getById = async (id = null) => {
+    getById = async (id = null): Promise<LocationType> => {
+        if (!id) {
+            throw new Error('Missing character id');
+        }
+
+        return await this.request(`/character/${id}`);
+    };
+
+    search = async (name: string): Promise<CharacterApiPaginatedResponse> => {
+        if (!name) {
+            throw new Error('Missing name');
+        }
+
+        return await this.request(`/character/?name=${name}`);
+    };
+}
+
+interface LocationApiPaginatedResponse {
+    info: ApiResponseInfo;
+    results: LocationType[];
+}
+class LocationApi extends BaseApi {
+    constructor() {
+        super(API_URL_BASE);
+    }
+
+    getAll = async (pageId: string = '1'): Promise<LocationApiPaginatedResponse> =>
+        await this.request('/location?page=' + pageId);
+
+    getById = async (id = null): Promise<LocationType> => {
+        if (!id) {
+            throw new Error('Missing location id');
+        }
+
+        return await this.request(`/location/${id}`);
+    };
+
+    search = async (name: string): Promise<LocationApiPaginatedResponse> => {
+        if (!name) {
+            throw new Error('Missing name');
+        }
+
+        return await this.request(`/location/?name=${name}`);
+    };
+}
+
+interface EpisodeApiPaginatedResponse {
+    info: ApiResponseInfo;
+    results: Episode[];
+}
+class EpisodeApi extends BaseApi {
+    constructor() {
+        super(API_URL_BASE);
+    }
+
+    getAll = async (): Promise<EpisodeApiPaginatedResponse> => await this.request('/episode');
+
+    getById = async (id = null): Promise<Episode> => {
         if (!id) {
             throw new Error('Missing episode id');
         }
+
+        return await this.request(`/episode/${id}`);
+    };
+
+    search = async (name: string): Promise<EpisodeApiPaginatedResponse> => {
+        if (!name) {
+            throw new Error('Missing name');
+        }
+
+        return await this.request(`/episode/?name=${name}`);
     };
 }
 

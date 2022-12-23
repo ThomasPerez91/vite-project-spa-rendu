@@ -37,6 +37,7 @@ header {
 }
 
 #navBarSearch {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -60,4 +61,47 @@ header {
 #navBarSearch button {
     cursor: pointer;
     border-radius: 0 8px 8px 0;
+    background-color: #a3a17f;
+    transition: 0.15s;
+}
+
+#navBarSearch button:hover {
+    cursor: pointer;
+    background-color: #b4b04a;
+}
+
+#navBarSearch button:active {
+    background-color: #2a963d;
+    box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
+}
+
+#navBarSearch input:hover ~ ul,
+#navBarSearch input:focus ~ ul,
+#navBarSearch ul:hover,
+#navBarSearch ul:focus {
+    display: flex;
+}
+
+#navBarSearch ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 300px;
+    width: 100%;
+    background-color: var(--bg-color);
+    padding: 0.5em;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+}
+
+#navBarSearch ul li {
+    height: fit-content;
+    width: 100%;
+}
+#navBarSearch ul li a {
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
 }
