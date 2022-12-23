@@ -1,32 +1,30 @@
 import createElement from '../utils/createElement';
+import Link from './Link';
 
 const NavBar = () => {
     const links = ['characters', 'locations', 'episodes'];
-    const linkElements = links.map((link) => ({
-        tagName: 'li',
-        classList: ['nav-item'],
-        attributes: {
-            'data-tabId': link,
-        },
-        children: [
-            {
-                tagName: 'a',
-                text: link,
-                classList: ['nav-link'],
-                attributes: {
-                    href: `/${link}`,
-                },
+    const linkElements = links.map((link) =>
+        createElement({
+            tagName: 'li',
+            attributes: {
+                'data-tabId': link,
+                classList: ['nav-item'],
             },
-        ],
-    }));
+            children: [Link({ textContent: link, path: link, classList: ['nav-link'] })],
+        })
+    );
 
     return createElement({
         tagName: 'nav',
-        id: 'navBar',
+        attributes: {
+            id: 'navBar',
+        },
         children: [
             {
                 tagName: 'article',
-                id: 'navBarLinks',
+                attributes: {
+                    id: 'navBarLinks',
+                },
                 children: [
                     {
                         tagName: 'ul',
@@ -36,21 +34,25 @@ const NavBar = () => {
             },
             {
                 tagName: 'article',
-                id: 'navBarSearch',
+                attributes: {
+                    id: 'navBarSearch',
+                },
                 children: [
                     {
                         tagName: 'input',
-                        type: 'search',
-                        id: 'searchInput',
                         attributes: {
+                            type: 'search',
+                            id: 'searchInput',
                             placeholder: 'Search for...',
                         },
                     },
                     {
                         tagName: 'button',
-                        type: 'button',
-                        id: 'searchButton',
-                        text: 'Search',
+                        attributes: {
+                            type: 'button',
+                            id: 'searchButton',
+                            textContent: 'Search',
+                        },
                     },
                 ],
             },
