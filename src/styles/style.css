@@ -11,6 +11,8 @@
     --main-color: #3f88c5;
     --font-color: #333;
     --bg-color: #e8e8e8;
+    --bg-color-table-header: #349d37;
+    --color-text-table-header: #137382;
 }
 
 html, body {
@@ -48,17 +50,43 @@ a:hover {
     flex-direction: column;
 }
 
-table {
+.location-table {
     margin: 4em 0;
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
+.episode-table {
+    margin-top: 4em;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.episode-page {
+    width: 75%;
+    padding: 1em;
+    gap: 1.5em;
+    justify-content: space-around;
+    flex-direction: row;
+    /* overflow: hidden; */
+}
+
+.table-header-row {
+    background-color: var(--bg-color-table-header);
+    color: var(--color-text-table-header);
+}
+
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+}
+
+.table-body-count {
+    display: flex;
+    justify-content: flex-end;
 }
 
 tr:nth-child(even) {

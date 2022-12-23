@@ -3,6 +3,7 @@ import TabManager from './utils/TabManager';
 
 import PageCharacter from './pages/PageCharacter';
 import PageLocation from './pages/PageLocation';
+import PageEpisode from './pages/PageEpisode';
 import PageNotFound from './pages/PageNotFound';
 
 import './styles/style.css';
@@ -17,6 +18,10 @@ const tabManager = new TabManager(rootElement, {
     },
     locations: {
         component: PageLocation,
+        params: [],
+    },
+    episodes: {
+        component: PageEpisode,
         params: [],
     },
     notFound: {
