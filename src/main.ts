@@ -1,26 +1,47 @@
-import PageCharacter from './pages/PageCharacter';
-import TabManager from './utils/TabManager';
 import NavBar from './components/NavBar';
+import TabManager from './utils/TabManager';
+
+import PageCharacter from './pages/PageCharacter';
+import PageLocation from './pages/PageLocation';
+import PageNotFound from './pages/PageNotFound';
 
 import './styles/style.css';
 import './styles/navbar.css';
 import './styles/character.css';
 
 const rootElement = document.querySelector('#app') as HTMLElement;
+const tabManager = new TabManager(rootElement, {
+    characters: {
+        component: PageCharacter,
+        params: [],
+    },
+    locations: {
+        component: PageLocation,
+        params: [],
+    },
+    notFound: {
+        component: PageNotFound,
+        params: [],
+    },
+});
+
 if (rootElement) {
     const headerElement = document.querySelector('header');
-    headerElement.appendChild(NavBar());
+    if (headerElement) {
+        headerElement.appendChild(NavBar());
+    }
 
     const footerElement = document.querySelector('footer');
-    footerElement.textContent = 'Footer';
+    if (footerElement) {
+        footerElement.textContent = 'Footer';
+    }
 
-    const tabManager = new TabManager(rootElement, {
-        characters: {
-            component: PageCharacter,
-            params: [],
-        },
-    });
-
-    tabManager.openTabById('characters');
-    window['tabManager'] = tabManager;
+    const path = location.pathname.substring(1).split('?')[0];
+    if (!path || ['characters', 'locations'].includes(path)) {
+        tabManager.openTabById(path || 'characters');
+    } else {
+        tabManager.openTabById('notFound');
+    }
 }
+
+export { tabManager };

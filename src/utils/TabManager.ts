@@ -22,12 +22,9 @@ class TabManager {
         this.componentMapping = componentMapping;
     }
 
-    async openTabById(tabId) {
-        if (!(tabId in this.componentMapping)) {
-            throw new Error('Invalid id provided');
-        }
-
-        const tab = this.componentMapping[tabId];
+    async openTabById(tabId: string = null) {
+        const key = tabId in this.componentMapping ? tabId : 'notFound';
+        const tab = this.componentMapping[key];
         const Component = await tab.component(...tab?.params);
 
         this.rootElement.innerHTML = '';
