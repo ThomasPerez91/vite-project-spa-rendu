@@ -6,7 +6,7 @@ interface Character {
     type: string;
     gender: 'Female' | 'Male' | 'Genderless' | 'unknown';
     origin: Origin;
-    location: Location[];
+    location: LocationType[];
     image: string;
     episode: Episode[];
     url: string;
@@ -18,7 +18,7 @@ interface Origin {
     name?: string;
 }
 
-interface Location {
+interface LocationType {
     id: number;
     name: string;
     type: string;

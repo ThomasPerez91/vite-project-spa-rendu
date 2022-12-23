@@ -9,7 +9,7 @@ class TabManager {
     private rootElement: HTMLElement;
     private componentMapping: ComponentMappingProps;
 
-    constructor(rootElement: HTMLElement = null, componentMapping: ComponentMappingProps = null) {
+    constructor(rootElement: HTMLElement, componentMapping: ComponentMappingProps) {
         if (!rootElement) {
             throw new Error('Missing root element');
         }
@@ -22,10 +22,10 @@ class TabManager {
         this.componentMapping = componentMapping;
     }
 
-    async openTabById(tabId: string = null) {
+    async openTabById(tabId: string) {
         const key = tabId in this.componentMapping ? tabId : 'notFound';
         const tab = this.componentMapping[key];
-        const Component = await tab.component(...tab?.params);
+        const Component = await tab.component(...(tab?.params as []));
 
         this.rootElement.innerHTML = '';
         this.rootElement.appendChild(Component);

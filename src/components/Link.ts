@@ -18,7 +18,7 @@ export default function Link({ textContent = '', path = '', classList = [] }: Li
 
     element.addEventListener('click', (event) => {
         event.preventDefault();
-        history.pushState({}, null, path);
+        history.pushState({}, '', path);
         tabManager.openTabById(path);
     });
 
