@@ -1,13 +1,14 @@
 import createElement from '../../utils/createElement';
 import ItemCharacter from './ItemCharacter';
 
-const ListCharacters = (characters) =>
-    createElement({
-        tagName: 'div',
+const ListCharacters = (characters: Character[]) => {
+    return createElement({
+        tagName: 'ul',
         attributes: {
-            classList: ['character-page'],
+            classList: ['list-character'],
         },
         children: characters.map((character) => ItemCharacter(character)),
     });
+};
 
 export default ListCharacters;

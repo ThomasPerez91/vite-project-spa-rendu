@@ -23,12 +23,17 @@ class BaseApi {
     }
 }
 
+interface CharacterApiGetAllResponse {
+    info: ApiResponseInfo;
+    results: Character[];
+}
 class CharacterApi extends BaseApi {
     constructor() {
         super(API_URL_BASE);
     }
 
-    getAll = async () => await this.request('/character');
+    getAll = async (pageId: string = '1'): Promise<CharacterApiGetAllResponse> =>
+        await this.request('/character?page=' + pageId);
 
     getById = async (id = null) => {
         if (!id) {
@@ -50,7 +55,11 @@ class LocationApi extends BaseApi {
         if (residents.length === 0 || !('length' in residents)) {
             throw new Error('Missing residents');
         }
-        const residentsIds = residents.map((resident) => resident.split('/').pop());
+        const residentsIds = residents.map((resident) => {
+            const { pathname } = new URL(resident);
+            const residentId = pathname.substring(1).split('/').pop();
+            return residentId;
+        });
         const request = await this.request(`/character/${residentsIds.join(',')}`);
 
         if (residentsIds.length > 1) {
