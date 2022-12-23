@@ -1,14 +1,14 @@
 import ListCharacters from '../components/Characters/ListCharacters';
 
-import { CharacterApi } from '../utils/Api';
+import {CharacterApi} from '../utils/Api';
 import createElement from '../utils/createElement';
-import { Pagination } from '../utils/Pagination';
+import {Pagination} from '../utils/Pagination';
 
 const PageCharacter = async () => {
     const pageId = Pagination.getPageId(location.href) || '1';
 
     const characterApi = new CharacterApi();
-    const { info, results: characters } = await characterApi.getAll(pageId);
+    const {info, results: characters} = await characterApi.getAll(pageId);
 
     const pagination = new Pagination(info, pageId);
 
@@ -18,15 +18,15 @@ const PageCharacter = async () => {
             classList: ['character-page'],
         },
         children: [
-            pagination.render({ path: '/characters?pageId=' }),
+            pagination.render({path: '/characters?pageId='}),
             characters
                 ? ListCharacters(characters)
                 : createElement({
-                      tagName: 'p',
-                      attributes: {
-                          textContent: 'No character',
-                      },
-                  }),
+                    tagName: 'p',
+                    attributes: {
+                        textContent: 'No characters',
+                    },
+                }),
         ],
     });
 };
