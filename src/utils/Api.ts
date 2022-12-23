@@ -86,7 +86,8 @@ class EpisodeApi extends BaseApi {
         super(API_URL_BASE);
     }
 
-    getAll = async () => await this.request('/episode');
+    getAll = async (pageId: string = '1') =>
+        await this.request('/episode?page=' + pageId);
 
     getBulk = async (characters: string[] = []) => {
         if (characters.length === 0 || !('length' in characters)) {
