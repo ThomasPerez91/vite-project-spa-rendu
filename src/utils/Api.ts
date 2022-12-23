@@ -17,9 +17,7 @@ class BaseApi {
         }
 
         const request = await fetch(this.baseUrl + pathname, { method: 'GET' });
-        const data = await request.json();
-
-        return data;
+        return await request.json();
     }
 }
 
@@ -44,7 +42,7 @@ class CharacterApi extends BaseApi {
             throw new Error('Missing character id');
         }
 
-        // todo: fetch by id
+        return await this.request(`/character/${id}`);
     };
 }
 
