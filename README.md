@@ -7,6 +7,18 @@ Librairies du projet :
 -   Eslint
 -   Prettier
 
+## Pages
+
+-   Characters
+    -   Liste des personnages
+-   Locations
+    -   Liste des lieux
+-   Episodes
+
+    -   List des épisodes
+
+Un champ de recherche est présent dans la barre de navigation permettant de faire une recherche selon le nom des personnages, lieux et épisodes de la série.
+
 ## Installation du projet
 
 ```
@@ -31,3 +43,9 @@ npm run build
 ```
 npm run preview
 ```
+
+## Voir le projet
+
+Le projet est accessible à ce lien : https://vite-project-spa-rendu-b8yf.vercel.app/
+
+(Les derniers commits ne sont pas forcément pris en compte, à tester en local pour être sûr d'avoir toutes les fonctionnalités)

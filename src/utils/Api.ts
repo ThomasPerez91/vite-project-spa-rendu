@@ -51,7 +51,7 @@ class CharacterApi extends BaseApi {
         return charactersIds.length === 1 ? [request] : request;
     };
 
-    getById = async (id = null): Promise<LocationType> => {
+    getById = async (id = null): Promise<Character> => {
         if (!id) {
             throw new Error('Missing character id');
         }
@@ -105,7 +105,7 @@ class EpisodeApi extends BaseApi {
     constructor() {
         super(API_URL_BASE);
     }
-    
+
     getAll = async (pageId: string = '1'): Promise<EpisodeApiPaginatedResponse> =>
         await this.request('/episode?page=' + pageId);
 
