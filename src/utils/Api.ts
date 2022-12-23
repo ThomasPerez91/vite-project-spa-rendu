@@ -27,6 +27,10 @@ interface CharacterApiGetAllResponse {
     info: ApiResponseInfo;
     results: Character[];
 }
+interface LocationApiGetAllResponse {
+    info: ApiResponseInfo;
+    results: LocationType[];
+}
 class CharacterApi extends BaseApi {
     constructor() {
         super(API_URL_BASE);
@@ -49,7 +53,8 @@ class LocationApi extends BaseApi {
         super(API_URL_BASE);
     }
 
-    getAll = async () => await this.request('/location');
+    getAll = async (pageId: string = '1'): Promise<LocationApiGetAllResponse> =>
+        await this.request('/location?page=' + pageId);
 
     getBulk = async (residents: string[] = []) => {
         if (residents.length === 0 || !('length' in residents)) {
