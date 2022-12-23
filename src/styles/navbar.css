@@ -1,7 +1,7 @@
 header {
     z-index: 9;
     width: 100%;
-    background: url(../../assets/img/rickmorty.png) no-repeat center ;
+    background: url(../../assets/img/rickmorty.png) no-repeat center;
     background-size: cover;
     border-radius: 8px;
 }
@@ -9,7 +9,7 @@ header {
 #navBar {
     width: 100%;
     font-size: 1.5rem;
-    background-color: rgba(0, 0, 0, .35);
+    background-color: rgba(0, 0, 0, 0.4);
     padding: 2rem;
     display: flex;
     justify-content: space-between;
@@ -40,4 +40,24 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    transition: 0.15s;
+}
+
+#navBarSearch:hover {
+    border-radius: 8px;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.35);
+}
+
+#navBarSearch input,
+#navBarSearch button {
+    padding: 0.75em 1em;
+}
+
+#navBarSearch input {
+    border-radius: 8px 0 0 8px;
+}
+
+#navBarSearch button {
+    cursor: pointer;
+    border-radius: 0 8px 8px 0;
 }
