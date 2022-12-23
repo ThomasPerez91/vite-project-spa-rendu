@@ -42,7 +42,7 @@ if (rootElement) {
     }
 
     const path = location.pathname.substring(1).split('?')[0];
-    if (!path || ['characters', 'locations'].includes(path)) {
+    if (!path || ['characters', 'locations', 'episodes'].includes(path)) {
         tabManager.openTabById(path || 'characters');
     } else {
         tabManager.openTabById('notFound');
