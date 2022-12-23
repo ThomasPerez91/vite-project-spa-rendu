@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-color: #3f88c5;
+    --font-color: #333;
+    --bg-color: #e8e8e8;
+    --bg-color-table-header: #349d37;
+    --color-text-table-header: #137382;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    color: var(--font-color);
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+html body {
+    width: 1280px;
+    padding: 1em;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    cursor: pointer;
+    color: var(--main-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+a:hover {
+    border-bottom: 1px solid var(--main-color);
+}
+
+#app {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.location-table {
+    margin: 4em 0;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.episode-table {
+    margin-top: 4em;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.episode-page {
+    width: 75%;
+    padding: 1em;
+    gap: 1.5em;
+    justify-content: space-around;
+    flex-direction: row;
+    /* overflow: hidden; */
+}
+
+.table-header-row {
+    background-color: var(--bg-color-table-header);
+    color: var(--color-text-table-header);
+}
+
+td,
+th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.table-body-count {
+    display: flex;
+    justify-content: flex-end;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+@media (max-width: 1280px) {
+    html body {
+        width: 100%;
+    }
+}
