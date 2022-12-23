@@ -76,6 +76,20 @@ class EpisodeApi extends BaseApi {
 
     getAll = async () => await this.request('/episode');
 
+    getBulk = async (characters: string[] = []) => {
+        if (characters.length === 0 || !('length' in characters)) {
+            throw new Error('Missing characters');
+        }
+        const charactersIds = characters.map((character) => character.split('/').pop());
+        const request = await this.request(`/character/${charactersIds.join(',')}`);
+
+        if (charactersIds.length > 1) {
+            return request;
+        }
+
+        return charactersIds.length === 1 ? [request] : request;
+    };
+
     getById = async (id = null) => {
         if (!id) {
             throw new Error('Missing episode id');

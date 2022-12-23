@@ -1,7 +1,7 @@
 import { LocationApi } from '../../utils/Api.js';
 import createElement, { createElementProps } from '../../utils/createElement';
 
-export async function Location({ name, type, dimension, residents }: LocationType) {
+export async function ItemLocation({ name, type, dimension, residents }: LocationType) {
     const residentsData = residents.length !== 0 ? await new LocationApi().getBulk(residents) : [];
 
     const tableTitle: createElementProps = {
