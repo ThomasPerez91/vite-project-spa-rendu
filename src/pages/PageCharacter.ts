@@ -24,7 +24,7 @@ const PageCharacter = async () => {
                 : createElement({
                       tagName: 'p',
                       attributes: {
-                          textContent: 'No characters',
+                          textContent: 'No character',
                       },
                   }),
         ],

@@ -14,6 +14,7 @@ export async function ItemLocation({ name, type, dimension, residents }: Locatio
                 tagName: 'th',
                 attributes: {
                     classList: ['table-location-name'],
+                    colspan: '3',
                 },
                 children: [
                     {
