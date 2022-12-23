@@ -1,10 +1,10 @@
-import { LocationApi } from '../../utils/Api.js';
-import createElement, { createElementProps } from '../../utils/createElement';
+import { CharacterApi } from '../../utils/Api.js';
+import createElement from '../../utils/createElement';
 
 export async function ItemLocation({ name, type, dimension, residents }: LocationType) {
-    const residentsData = residents.length !== 0 ? await new LocationApi().getBulk(residents) : [];
+    const residentsData = residents.length !== 0 ? await new CharacterApi().getBulk(residents) : [];
 
-    const tableTitle: createElementProps = {
+    const tableTitle = createElement({
         tagName: 'tr',
         attributes: {
             classList: ['table-location-header-row'],
@@ -28,9 +28,9 @@ export async function ItemLocation({ name, type, dimension, residents }: Locatio
                 ],
             },
         ],
-    };
+    });
 
-    const tableColumnsName: createElementProps = {
+    const tableColumnsName = createElement({
         tagName: 'tr',
         attributes: {
             classList: ['table-header-row'],
@@ -58,13 +58,13 @@ export async function ItemLocation({ name, type, dimension, residents }: Locatio
                 },
             },
         ],
-    };
+    });
 
     const tableBody =
         residentsData.length > 0
             ? residentsData.map(createTableRowLocation)
             : [
-                  {
+                  createElement({
                       tagName: 'tr',
                       children: [
                           {
@@ -75,7 +75,7 @@ export async function ItemLocation({ name, type, dimension, residents }: Locatio
                               },
                           },
                       ],
-                  },
+                  }),
               ];
 
     const container = createElement({
@@ -98,30 +98,31 @@ export async function ItemLocation({ name, type, dimension, residents }: Locatio
     return container;
 }
 
-const createTableRowLocation = ({ name, status, url }): createElementProps => ({
-    tagName: 'tr',
-    children: [
-        {
-            tagName: 'td',
-            attributes: {
-                classList: 'td',
-                textContent: name,
+const createTableRowLocation = ({ name, status, url }) =>
+    createElement({
+        tagName: 'tr',
+        children: [
+            {
+                tagName: 'td',
+                attributes: {
+                    classList: 'td',
+                    textContent: name,
+                },
             },
-        },
-        {
-            tagName: 'td',
-            attributes: {
-                classList: 'td',
-                text: status,
+            {
+                tagName: 'td',
+                attributes: {
+                    classList: 'td',
+                    text: status,
+                },
             },
-        },
-        {
-            tagName: 'a',
-            attributes: {
-                classList: 'td',
-                href: url,
-                textContent: url,
+            {
+                tagName: 'a',
+                attributes: {
+                    classList: 'td',
+                    href: url,
+                    textContent: url,
+                },
             },
-        },
-    ],
-});
+        ],
+    });
