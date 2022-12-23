@@ -105,8 +105,9 @@ class EpisodeApi extends BaseApi {
     constructor() {
         super(API_URL_BASE);
     }
-
-    getAll = async (): Promise<EpisodeApiPaginatedResponse> => await this.request('/episode');
+    
+    getAll = async (pageId: string = '1'): Promise<EpisodeApiPaginatedResponse> =>
+        await this.request('/episode?page=' + pageId);
 
     getById = async (id = null): Promise<Episode> => {
         if (!id) {
